@@ -1,0 +1,36 @@
+
+background.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+mainbg
+  rotate: false
+  xy: 1, 1
+  size: 640, 960
+  orig: 640, 960
+  offset: 0, 0
+  index: -1
+
+background2.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+secondbg
+  rotate: false
+  xy: 1, 1
+  size: 640, 960
+  orig: 640, 960
+  offset: 0, 0
+  index: -1
+
+background3.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+thbg
+  rotate: false
+  xy: 1, 1
+  size: 640, 960
+  orig: 640, 960
+  offset: 0, 0
+  index: -1

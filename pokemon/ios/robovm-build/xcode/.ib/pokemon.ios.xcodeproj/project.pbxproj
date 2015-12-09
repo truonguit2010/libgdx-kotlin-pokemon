@@ -1,0 +1,294 @@
+{
+	"archiveVersion" = "1";
+	"classes" =
+		{
+		};
+	"objectVersion" = "46";
+	"objects" =
+		{
+			"100000000000000000000002" =
+				{
+					"isa" = "PBXGroup";
+					"children" =
+						("147932594D53443A898E71B1", "5FB51FB43EE34DEE8BFE0877");
+					"sourceTree" = "<group>";
+				};
+			"100000000000000000000006" =
+				{
+					"isa" = "PBXNativeTarget";
+					"buildPhases" =
+						("100000000000000000000007");
+					"buildRules" =
+						();
+					"dependencies" =
+						();
+					"name" = "test";
+					"productName" = "test";
+					"productType" = "com.apple.product-type.application";
+				};
+			"100000000000000000000001" =
+				{
+					"isa" = "PBXProject";
+					"attributes" =
+						{
+							"LastUpgradeCheck" = "0620";
+						};
+					"buildConfigurationList" = "100000000000000000000003";
+					"compatibilityVersion" = "Xcode 3.2";
+					"developmentRegion" = "English";
+					"hasScannedForEncodings" = "0";
+					"knownRegions" =
+						("en");
+					"mainGroup" = "100000000000000000000002";
+					"projectDirPath" = "";
+					"projectRoot" = "";
+					"targets" =
+						("100000000000000000000006");
+				};
+			"100000000000000000000007" =
+				{
+					"isa" = "PBXSourcesBuildPhase";
+					"buildActionMask" = "2147483647";
+					"files" =
+						();
+					"runOnlyForDeploymentPostprocessing" = "0";
+				};
+			"100000000000000000000004" =
+				{
+					"isa" = "XCBuildConfiguration";
+					"buildSettings" =
+						{
+							"INFOPLIST_FILE" = "/Users/truongps/libgdx-kotlin-pokemon/pokemon/ios/Info.plist.xml";
+							"SDKROOT" = "iphoneos";
+							"TARGETED_DEVICE_FAMILY" = "1,2";
+							"GCC_PRECOMPILE_PREFIX_HEADER" = "YES";
+							"GCC_PREFIX_HEADER" = "/Users/truongps/libgdx-kotlin-pokemon/pokemon/ios/robovm-build/xcode/.ib/Prefix.pch";
+						};
+					"name" = "Debug";
+				};
+			"100000000000000000000005" =
+				{
+					"isa" = "XCBuildConfiguration";
+					"buildSettings" =
+						{
+							"INFOPLIST_FILE" = "/Users/truongps/libgdx-kotlin-pokemon/pokemon/ios/Info.plist.xml";
+							"SDKROOT" = "iphoneos";
+							"TARGETED_DEVICE_FAMILY" = "1,2";
+							"GCC_PRECOMPILE_PREFIX_HEADER" = "YES";
+							"GCC_PREFIX_HEADER" = "/Users/truongps/libgdx-kotlin-pokemon/pokemon/ios/robovm-build/xcode/.ib/Prefix.pch";
+						};
+					"name" = "Release";
+				};
+			"100000000000000000000003" =
+				{
+					"isa" = "XCConfigurationList";
+					"buildConfigurations" =
+						("100000000000000000000004", "100000000000000000000005");
+					"defaultConfigurationIsVisible" = "0";
+					"defaultConfigurationName" = "Release";
+				};
+			"99099B2F4DB94252BFB000E8" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "background.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "background.png";
+				};
+			"147932594D53443A898E71B1" =
+				{
+					"isa" = "PBXGroup";
+					"children" =
+						("86F0386CB23E408DA9D7DAE2", "FF3B3E074623428F91ED8529", "C80F31AD6F43406CA1DF4DCC",
+ "D98793EED62540D19DD97407", "3C79267DC97B497680F2616A", "B57656C01031473483E2D726",
+ "0E39EE9459904F299837BF1C", "5AC2174CBF414D86B574C5A3", "8B2A3DC8E12C4C5DAE088B91",
+ "E324525C7A764010ABFF9C3E", "BC86578DDEC245198EDAB8CD", "4E8B22BD274C4EFB99C1B2C8",
+ "B31D987BCB9B4559B408329B", "11311F933D4A4C49B57E966B");
+					"name" = "Resources";
+					"sourceTree" = "<absolute>";
+					"path" = "/Users/truongps/libgdx-kotlin-pokemon/pokemon/ios/data";
+				};
+			"86F0386CB23E408DA9D7DAE2" =
+				{
+					"isa" = "PBXGroup";
+					"children" =
+						("2B3F179AF08949C0B7B0A385");
+					"name" = "atlas";
+					"sourceTree" = "<group>";
+					"path" = "atlas";
+				};
+			"2B3F179AF08949C0B7B0A385" =
+				{
+					"isa" = "PBXGroup";
+					"children" =
+						("99099B2F4DB94252BFB000E8", "3599499A41614BAF88BF9601", "C7BFD58FEB314051B0FB2EB9",
+ "00DBC58088814592A8B2ED77", "4F2F6F2749284D49A267DA03");
+					"name" = "640960";
+					"sourceTree" = "<group>";
+					"path" = "640960";
+				};
+			"3599499A41614BAF88BF9601" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "background2.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "background2.png";
+				};
+			"C7BFD58FEB314051B0FB2EB9" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "background3.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "background3.png";
+				};
+			"00DBC58088814592A8B2ED77" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "pokemons.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "pokemons.png";
+				};
+			"4F2F6F2749284D49A267DA03" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "uis.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "uis.png";
+				};
+			"6F3A912B45BF4D67B45550BD" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "font.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "font.png";
+				};
+			"FF3B3E074623428F91ED8529" =
+				{
+					"isa" = "PBXGroup";
+					"children" =
+						("6F3A912B45BF4D67B45550BD");
+					"name" = "fonts";
+					"sourceTree" = "<group>";
+					"path" = "fonts";
+				};
+			"11311F933D4A4C49B57E966B" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "yy_yank.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "yy_yank.png";
+				};
+			"C80F31AD6F43406CA1DF4DCC" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "Default-375w-667h@2x.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "Default-375w-667h@2x.png";
+				};
+			"D98793EED62540D19DD97407" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "Default-414w-736h@3x.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "Default-414w-736h@3x.png";
+				};
+			"3C79267DC97B497680F2616A" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "Default-568h@2x.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "Default-568h@2x.png";
+				};
+			"B57656C01031473483E2D726" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "Default.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "Default.png";
+				};
+			"0E39EE9459904F299837BF1C" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "Default@2x.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "Default@2x.png";
+				};
+			"5AC2174CBF414D86B574C5A3" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "Default@2x~ipad.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "Default@2x~ipad.png";
+				};
+			"8B2A3DC8E12C4C5DAE088B91" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "Default~ipad.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "Default~ipad.png";
+				};
+			"E324525C7A764010ABFF9C3E" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "Icon-72.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "Icon-72.png";
+				};
+			"BC86578DDEC245198EDAB8CD" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "Icon-72@2x.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "Icon-72@2x.png";
+				};
+			"4E8B22BD274C4EFB99C1B2C8" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "Icon.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "Icon.png";
+				};
+			"B31D987BCB9B4559B408329B" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "Icon@2x.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "Icon@2x.png";
+				};
+			"6DEEFB5AC9C644EDAE2E1546" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "Info.plist";
+					"explicitFileType" = "text.plist.info";
+					"sourceTree" = "<group>";
+					"path" = "Info.plist.xml";
+				};
+			"5FB51FB43EE34DEE8BFE0877" =
+				{
+					"isa" = "PBXGroup";
+					"children" =
+						("6DEEFB5AC9C644EDAE2E1546");
+					"name" = "Supporting Files";
+					"sourceTree" = "<absolute>";
+					"path" = "/Users/truongps/libgdx-kotlin-pokemon/pokemon/ios";
+				};
+		};
+	"rootObject" = "100000000000000000000001";
+}

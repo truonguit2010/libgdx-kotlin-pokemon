@@ -178,6 +178,9 @@ class Algorithm {
         if (matrix[p1.row][p1.col] != matrix[p2.row][p2.col]) {
             return null
         }
+        if (matrix[p1.row][p1.col] == barrier) {
+            return null
+        }
         if (p1.isEqualTo(p2)) {
             return null
         }
@@ -200,19 +203,56 @@ class Algorithm {
         return null
     }
 
+    fun shuffle() {
+        Gdx.app.log(TAG, "reorderMatrixByRow")
+        var cache =  ArrayList<String>()
+        for (row in 1 .. matrix.size - 2) {
+            for (col in 1 .. matrix[0].size - 2) {
+                cache.add(matrix[row][col])
+            }
+        }
+        Collections.shuffle(cache)
+        var i = 0;
+        for (row in 1 .. matrix.size - 2) {
+            for (col in 1 .. matrix[0].size - 2) {
+                matrix[row][col] = cache[i]
+                i++
+            }
+        }
+        if (getHint() == null) {
+            shuffle()
+        }
+    }
+
+    fun isClear() : Boolean {
+        for (row in 0 .. matrix.size - 1) {
+            for (col in 0 .. matrix[0].size - 1) {
+                if (matrix[row][col] != barrier) {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+
     fun getHint() : HintPath? {
-        for (row1 in 0 .. matrix.size) {
-            for (col1 in 0 .. matrix[0].size) {
-                for (row2 in 0 .. matrix.size) {
-                    for (col2 in 0 .. matrix[0].size) {
-                        var line = checkTwoPointOK(Point(row1, col1), Point(row2, col2))
+        Gdx.app.log(TAG, "get Hint")
+        for (row1 in 0 .. matrix.size - 1) {
+            for (col1 in 0 .. matrix[0].size - 1) {
+                for (row2 in 0 .. matrix.size - 1) {
+                    for (col2 in 0 .. matrix[0].size - 1) {
+                        var p1 = Point(row1, col1)
+                        var p2 = Point(row2, col2)
+                        var line = checkTwoPointOK(p1, p2)
                         if (line != null) {
+                            Gdx.app.log(TAG, "get Hint $p1 tp $p2 OK")
                             return line
                         }
                     }
                 }
             }
         }
+        Gdx.app.log(TAG, "getHint - Need reorder matrix")
         return null
     }
 }

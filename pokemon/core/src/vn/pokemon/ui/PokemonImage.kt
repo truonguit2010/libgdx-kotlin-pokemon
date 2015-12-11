@@ -3,6 +3,7 @@ package vn.pokemon.ui
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.scenes.scene2d.ui.Image
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable
 import vn.pokemon.model.*
 
 /**
@@ -13,7 +14,7 @@ class PokemonImage : Image {
     var pId : String
     var point : Point
 
-    constructor(pId : String, point : Point, region : TextureAtlas.AtlasRegion) : super(region) {
+    constructor(pId : String, point : Point, region : TextureRegionDrawable?) : super(region) {
         this.point = point
         this.pId = pId
     }

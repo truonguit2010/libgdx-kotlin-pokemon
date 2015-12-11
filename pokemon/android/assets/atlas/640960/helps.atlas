@@ -1,0 +1,48 @@
+
+helps.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+help1
+  rotate: false
+  xy: 1, 1
+  size: 640, 880
+  orig: 640, 880
+  offset: 0, 0
+  index: -1
+
+helps2.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+help2
+  rotate: false
+  xy: 1, 1
+  size: 640, 880
+  orig: 640, 880
+  offset: 0, 0
+  index: -1
+
+helps3.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+help3
+  rotate: false
+  xy: 1, 1
+  size: 640, 880
+  orig: 640, 880
+  offset: 0, 0
+  index: -1
+
+helps4.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+help4
+  rotate: false
+  xy: 1, 1
+  size: 640, 880
+  orig: 640, 880
+  offset: 0, 0
+  index: -1

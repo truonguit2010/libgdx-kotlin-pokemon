@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.NinePatch
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable
 import java.util.*
 
 /**
@@ -22,7 +23,8 @@ class Assets : ManagedAsset {
 //    public lateinit var skin : Skin
 
     val POKEMON_ATLAS : String = "atlas/pokemons.atlas"
-    var pokemons : ArrayList<TextureAtlas.AtlasRegion> = ArrayList()
+    var pokemons : ArrayList<TextureRegionDrawable> = ArrayList()
+    lateinit  var pokemonBackground : TextureRegionDrawable
 
     val BACKGROUND_ATLAS : String = "atlas/background.atlas"
     lateinit var mainBackground : TextureAtlas.AtlasRegion
@@ -40,6 +42,15 @@ class Assets : ManagedAsset {
     lateinit var backButton : TextureAtlas.AtlasRegion
     lateinit var greenLine : NinePatch
     lateinit var greenLineVer : NinePatch
+
+    lateinit var helpButton : TextureRegionDrawable
+    lateinit var leaderBoardButton : TextureRegionDrawable
+    lateinit var settingsButton : TextureRegionDrawable
+
+    lateinit var playButton : TextureRegionDrawable
+
+    val HELP_ATLAS : String = "atlas/helps.atlas"
+    var helps : ArrayList<TextureRegionDrawable> = ArrayList()
 
     val SCORE_FONT = "fonts/font.fnt"
     lateinit var scoreFont : BitmapFont
@@ -84,7 +95,21 @@ class Assets : ManagedAsset {
 
         backButton = atlas.findRegion("back")
         greenLine = atlas.createPatch("green_line")
-        greenLineVer  = atlas.createPatch("green_line_ver")
+        greenLineVer = atlas.createPatch("green_line_ver")
+
+        helpButton = TextureRegionDrawable(atlas.findRegion("help_button"))
+        leaderBoardButton = TextureRegionDrawable(atlas.findRegion("leader_board_button"))
+        settingsButton = TextureRegionDrawable(atlas.findRegion("setting_button"))
+        playButton = TextureRegionDrawable(atlas.findRegion("play_button"))
+    }
+
+    fun loadHelps() {
+        loadTextureAtlas(HELP_ATLAS)
+        finishLoading()
+        var atlas = getTextureAtlas(HELP_ATLAS)
+        for (i in 0 .. 3) {
+            helps.add(TextureRegionDrawable(atlas.findRegion("help" + (i + 1))))
+        }
     }
 
     fun loadPokermons() {
@@ -92,13 +117,14 @@ class Assets : ManagedAsset {
         finishLoading()
         var atlas = getTextureAtlas(POKEMON_ATLAS)
         for (i in 0 .. 35) {
-            pokemons.add(atlas.findRegion("" + i + "a"))
+            pokemons.add(TextureRegionDrawable(atlas.findRegion("" + i + "a")))
         }
+        pokemonBackground = TextureRegionDrawable(atlas.findRegion("bg"))
     }
 
-    fun getPokemon(pId : String) : TextureAtlas.AtlasRegion? {
+    fun getPokemon(pId : String) : TextureRegionDrawable? {
         for (region in pokemons) {
-            if (region != null && pId.equals(region.name)) {
+            if (region != null && pId.equals((region.region as TextureAtlas.AtlasRegion).name)) {
                 return region
             }
             if (region == null) {

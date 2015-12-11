@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import vn.pokemon.asset.Assets
 import vn.pokemon.screens.GameScreen
+import vn.pokemon.screens.HelpScreen
 import vn.pokemon.screens.MenuScreen
 import vn.pokemon.utils.UIUtils
 
@@ -34,6 +35,7 @@ public class PokemonGame : Game() {
 	val TAG = "KotlinSample"
 	lateinit var menuScreen : MenuScreen
 	lateinit var gameScreen : GameScreen
+	lateinit var helpScreen : HelpScreen
 	lateinit var assets : Assets
 
 	lateinit var uiUtils : UIUtils
@@ -49,12 +51,14 @@ public class PokemonGame : Game() {
 		assets.loadFont()
 		assets.loadBackgrounds()
 		assets.loadUis()
+		assets.loadHelps()
 		assets.loadPokermons()
 
 		uiUtils = UIUtils()
 
 		gameScreen = GameScreen(this)
 		menuScreen = MenuScreen(this)
+		helpScreen = HelpScreen(this)
 
 		setScreen(menuScreen)
 
@@ -67,11 +71,21 @@ public class PokemonGame : Game() {
 	 *
 	 */
 	fun showGameScreen(type : String) {
-		setScreen(GameScreen(this))
+		var game = GameScreen(this)
+		if ("normal" == type) {
+
+		} else {
+			game.changeGameType(game.GAME_TYPE_HIDDEN)
+		}
+		setScreen(game)
 	}
 
 	fun showMenuScreen() {
 		setScreen(menuScreen)
+	}
+
+	fun showHelpScreen() {
+		setScreen(helpScreen)
 	}
 
 	fun calculateViewport() {

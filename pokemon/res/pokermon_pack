@@ -1,5 +1,5 @@
 name=pokemon_pack
-filename=pokemons
+filename=pokemons.atlas
 input=pokermons
 output=
 
@@ -9,8 +9,8 @@ debug=false
 duplicatePadding=true
 edgePadding=true
 fast=false
-filterMag=Nearest
-filterMin=Nearest
+filterMag=Linear
+filterMin=Linear
 format=RGBA8888
 ignoreBlankImages=true
 jpegQuality=0.9

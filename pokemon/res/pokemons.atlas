@@ -1011,3 +1011,10 @@ repeat: none
   orig: 64, 64
   offset: 0, 0
   index: -1
+bg
+  rotate: false
+  xy: 793, 661
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1

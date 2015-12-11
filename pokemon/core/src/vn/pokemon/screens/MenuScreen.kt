@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.ui.Image
+import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener
 import com.badlogic.gdx.utils.Scaling
@@ -27,7 +28,17 @@ class MenuScreen : BaseScreen {
                     game.showGameScreen("normal")
                 }
                 "time_button" -> {
-                    game.showGameScreen("time")
+                    game.showGameScreen("hidden")
+                }
+                "help_button" -> {
+                    // Show help screen
+                    game.showHelpScreen()
+                }
+                "leader_board_button" -> {
+                    // Show leader board screen
+                }
+                "setting_button" -> {
+                    // Show Setting button
                 }
             }
         }
@@ -68,6 +79,27 @@ class MenuScreen : BaseScreen {
         timeButton.y = normalButton.y - 10 - timeButton.height
         timeButton.addListener(TapListener())
         addActor(timeButton)
+
+        var helpButton = game.uiUtils.createImageButton(null, game.assets.helpButton)
+        helpButton.name = "help_button"
+        helpButton.addListener(TapListener())
+        var leaderBoardButton = game.uiUtils.createImageButton(null, game.assets.leaderBoardButton)
+        leaderBoardButton.name = "leader_board_button"
+        leaderBoardButton.addListener(TapListener())
+        var settingButton = game.uiUtils.createImageButton(null, game.assets.settingsButton)
+        settingButton.name = "setting_button"
+        settingButton.addListener(TapListener())
+
+        var table = Table()
+        table.add(helpButton)
+        var cell = table.add(leaderBoardButton)
+        cell.padLeft(50f)
+        cell.padRight(50f)
+        table.add(settingButton)
+        table.width = width
+        table.height = game.assets.helpButton.minHeight
+        table.y = timeButton.y - 50 - table.height
+        addActor(table)
     }
 
 }

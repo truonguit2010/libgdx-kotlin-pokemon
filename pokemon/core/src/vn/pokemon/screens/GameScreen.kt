@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable
 import com.badlogic.gdx.utils.Scaling
 import vn.pokemon.PokemonGame
 import vn.pokemon.utils.Algorithm
@@ -32,7 +33,7 @@ class GameScreen : BaseScreen {
     lateinit var gameBoard : ArrayList<ArrayList<PokemonImage>>
 
 
-    inner class DoneAction : Action {
+    inner class EatEffectDoneAction : Action {
 
         constructor() : super() {
 
@@ -40,6 +41,31 @@ class GameScreen : BaseScreen {
 
         override fun act(delta: Float): Boolean {
             reOrderMatrix()
+            return true
+        }
+    }
+
+    inner class ShowEffectDoneAction : Action {
+        constructor() : super() {
+
+        }
+
+        override fun act(delta: Float): Boolean {
+            closePokemon(actor as PokemonImage)
+            return true
+        }
+    }
+
+    inner class SetImageDrawableAction : Action {
+        var drawable : Drawable
+        constructor(drawable: Drawable) : super() {
+            this.drawable = drawable
+        }
+
+        override fun act(delta: Float): Boolean {
+            if (actor is PokemonImage) {
+                (actor as PokemonImage).drawable = drawable
+            }
             return true
         }
     }
@@ -58,8 +84,11 @@ class GameScreen : BaseScreen {
                 }
                 return
             }
-            if (selectedImage == null && event?.target is Image) {
+            if (selectedImage == null && event?.target is PokemonImage) {
                 selectedImage = event?.target as PokemonImage
+                if (gameType == GAME_TYPE_HIDDEN) {
+                    openPokemon(selectedImage)
+                }
             } else if (event?.target is Image)  {
                 var lastSelectedImage = event?.target as PokemonImage
                 var connectionPath : HintPath? = algorithm.checkTwoPointOK(selectedImage!!.point, lastSelectedImage.point)
@@ -67,10 +96,20 @@ class GameScreen : BaseScreen {
                     // Wrong, reset all selections.
                     selectedImage!!.color.a = 1f
                     lastSelectedImage.color.a = 1f
+                    if (gameType == GAME_TYPE_HIDDEN) {
+                        openPokemon(lastSelectedImage)
+                        var action = Actions.sequence(Actions.delay(SHOW_DELAY), ShowEffectDoneAction())
+                        selectedImage!!.addAction(action)
+                        action = Actions.sequence(Actions.delay(SHOW_DELAY), ShowEffectDoneAction())
+                        lastSelectedImage.addAction(action)
+                    }
                 } else {
                     // Right, score
                     selectedImage!!.color.a = 1f
                     lastSelectedImage.color.a = 1f
+                    if (gameType == GAME_TYPE_HIDDEN) {
+                        openPokemon(lastSelectedImage)
+                    }
                     // Update score
                     score += SCORE_UNIT
                     setScoreLabel(score)
@@ -84,18 +123,23 @@ class GameScreen : BaseScreen {
                 }
                 selectedImage = null
             }
-//            Gdx.app.log(TAG, "tap")
         }
 
         override fun touchDown(event: InputEvent?, x: Float, y: Float, pointer: Int, button: Int) {
-            event?.target?.getColor()?.a = 0.5f
-//            Gdx.app.log(TAG, "touch down")
+            if (gameType == GAME_TYPE_HIDDEN) {
+
+            } else {
+                event?.target?.getColor()?.a = 0.5f
+            }
         }
 
         override fun touchUp(event: InputEvent?, x: Float, y: Float, pointer: Int, button: Int) {
-//            Gdx.app.log(TAG, "touch up")
-            if (selectedImage == null) {
-                event!!.target.color.a = 1f
+            if (gameType == GAME_TYPE_HIDDEN) {
+
+            } else {
+                if (selectedImage == null) {
+                    event!!.target.color.a = 1f
+                }
             }
         }
     }
@@ -123,6 +167,11 @@ class GameScreen : BaseScreen {
     val LINE_A : Float = 0.5f
 
     var isHandleCannotContinue : Boolean = false
+
+    val SHOW_DELAY = 1f
+    val GAME_TYPE_NORMAL = 0
+    val GAME_TYPE_HIDDEN = 1
+    var gameType: Int = GAME_TYPE_NORMAL
 
     constructor(game: PokemonGame) : super(game) {
         var background = Image(game.assets.secondBackground)
@@ -175,6 +224,48 @@ class GameScreen : BaseScreen {
 //        setHintLine(MyLine(Point(numberOfRow,0), Point(numberOfRow, numberOfCol + 1)), line1)
     }
 
+    override fun show() {
+        super.show()
+
+    }
+
+    fun changeGameType(gameType : Int) {
+        if (gameType == GAME_TYPE_NORMAL) {
+            this.gameType = gameType
+        } else if (gameType == GAME_TYPE_HIDDEN) {
+            this.gameType = gameType
+            for (row in 0..numberOfRow) {
+                for (col in 0..numberOfCol) {
+                    closePokemon(gameBoard[row][col])
+                }
+            }
+        }
+    }
+
+    fun openPokemon(image : PokemonImage?) {
+        if (image != null) {
+            Gdx.app.log(TAG, "openPokemon " + image.pId)
+            if (image.pId == algorithm.barrier) {
+                return
+            }
+            var drawble = game.assets.getPokemon(image.pId)
+            if (image.drawable != drawble) {
+//                image.drawable = drawble
+                var action = Actions.sequence(Actions.scaleTo(0f, 1f, 0.1f), SetImageDrawableAction(drawble as Drawable), Actions.scaleTo(1f, 1f, 0.1f))
+                image.addAction(action)
+            }
+        }
+    }
+
+    fun closePokemon(image : PokemonImage?) {
+        if (image != null) {
+            if (image.drawable != game.assets.pokemonBackground) {
+                var action = Actions.sequence(Actions.scaleTo(0f, 1f, 0.1f), SetImageDrawableAction(game.assets.pokemonBackground as Drawable), Actions.scaleTo(1f, 1f, 0.1f))
+                image.addAction(action)
+            }
+        }
+    }
+
     fun setScoreLabel(score : Int) = scoreLabel.setText("Score: " + score)
 
     fun initGameBoard() {
@@ -185,7 +276,10 @@ class GameScreen : BaseScreen {
             var rowList = ArrayList<PokemonImage>()
             for (col in 0..numberOfCol) {
                 var pId : String = algorithm.matrix.get(row + 1).get(col + 1)
-                var region : TextureAtlas.AtlasRegion = game.assets.getPokemon(pId) as TextureAtlas.AtlasRegion
+                var region = game.assets.getPokemon(pId)
+                if (region == null) {
+                    Gdx.app.log(TAG, "Pokemon region == null")
+                }
                 var img = PokemonImage(pId, Point(row + 1, col + 1), region)
                 img.addListener(PokemonGestureListener())
                 img.touchable = Touchable.enabled
@@ -327,9 +421,10 @@ class GameScreen : BaseScreen {
 
     fun updatePokemons(effect : Boolean) {
         for (row in 0..numberOfRow) {
-            var rowLog = ""
+//            var rowLog = ""
             for (col in 0..numberOfCol) {
                 var pId : String = algorithm.matrix[row + 1][col + 1]
+                gameBoard[row][col].pId = pId
                 var isInvisible = pId.equals(algorithm.barrier)
                 if (isInvisible == true && gameBoard[row][col].isVisible == true) {
 //                    Gdx.app.log("GameScreen", "Hide")
@@ -337,18 +432,23 @@ class GameScreen : BaseScreen {
                     gameBoard[row][col].touchable = Touchable.disabled
                     if (!isHandleCannotContinue && !algorithm.isClear() && algorithm.getHint() == null) {
                         isHandleCannotContinue = true
-                        var action = Actions.sequence(Actions.scaleTo(1.2f, 1.2f, HINT_TIME / 4), Actions.parallel(Actions.scaleTo(0f, 0f, HINT_TIME / 2), Actions.fadeOut(HINT_TIME / 2)), DoneAction())
+                        var action = Actions.sequence(Actions.scaleTo(1.2f, 1.2f, HINT_TIME / 4), Actions.parallel(Actions.scaleTo(0f, 0f, HINT_TIME / 2), Actions.fadeOut(HINT_TIME / 2)), EatEffectDoneAction())
+                        if (gameType == GAME_TYPE_HIDDEN) {
+                            action = Actions.sequence(Actions.delay(0.3f), action)
+                        }
                         gameBoard[row][col].addAction(action)
                     } else {
                         var action = Actions.sequence(Actions.scaleTo(1.2f, 1.2f, HINT_TIME / 4), Actions.parallel(Actions.scaleTo(0f, 0f, HINT_TIME / 2), Actions.fadeOut(HINT_TIME / 2)))
+                        if (gameType == GAME_TYPE_HIDDEN) {
+                            action = Actions.sequence(Actions.delay(0.3f), action)
+                        }
                         gameBoard[row][col].addAction(action)
                     }
                     addActor(gameBoard[row][col])
                 }
-//                gameBoard.get(row).get(col).isVisible = !isInvisible
-                rowLog += pId + " "
+//                rowLog += pId + " "
             }
-            Gdx.app.log("Update Pokemon", rowLog)
+//            Gdx.app.log("Update Pokemon", rowLog)
         }
     }
 
@@ -385,12 +485,14 @@ class GameScreen : BaseScreen {
                     img.color.a = 1f
                     img.isVisible = true
                     img.drawable = TextureRegionDrawable(region)
+                    img.pId = pId
                     img.touchable = Touchable.enabled
                     addActor(img)
                 } else {
                     var img = gameBoard[row][col]
                     img.touchable = Touchable.disabled
                     img.isVisible = false
+                    img.pId = pId
                     addActor(img)
                 }
             }

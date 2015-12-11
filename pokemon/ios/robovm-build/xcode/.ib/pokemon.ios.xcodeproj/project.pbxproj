@@ -95,10 +95,10 @@
  "D98793EED62540D19DD97407", "3C79267DC97B497680F2616A", "B57656C01031473483E2D726",
  "0E39EE9459904F299837BF1C", "5AC2174CBF414D86B574C5A3", "8B2A3DC8E12C4C5DAE088B91",
  "E324525C7A764010ABFF9C3E", "BC86578DDEC245198EDAB8CD", "4E8B22BD274C4EFB99C1B2C8",
- "B31D987BCB9B4559B408329B", "2CA1F2DB5A9449D18389CD98");
+ "B31D987BCB9B4559B408329B");
 					"name" = "Resources";
 					"sourceTree" = "<absolute>";
-					"path" = "/Users/truongps/libgdx-kotlin-pokemon/pokemon/ios/data";
+					"path" = "/Users/truongps/libgdx-kotlin-pokemon/pokemon/ios/../android/assets";
 				};
 			"C80F31AD6F43406CA1DF4DCC" =
 				{
@@ -227,7 +227,9 @@
 					"isa" = "PBXGroup";
 					"children" =
 						("5BD5F4023C5A4F2A85CF9EFB", "C964C3B854384AD7A5D8A679", "90991050D4DB4B6896733EFC",
- "A2FAECDC833A4473BAC56FEC", "998044B5C0904E85A1AA1E3E");
+ "70490380D478460EB09BC531", "45FF589CEAC14FC6A7194380", "B18533B33D844F09B630B2CB",
+ "E67EC6550DF949D48BAD3A9B", "A2FAECDC833A4473BAC56FEC", "998044B5C0904E85A1AA1E3E"
+);
 					"name" = "640960";
 					"sourceTree" = "<group>";
 					"path" = "640960";
@@ -281,13 +283,37 @@
 					"sourceTree" = "<group>";
 					"path" = "fonts";
 				};
-			"2CA1F2DB5A9449D18389CD98" =
+			"70490380D478460EB09BC531" =
 				{
 					"isa" = "PBXFileReference";
-					"name" = "yy_yank.png";
+					"name" = "helps.png";
 					"lastKnownFileType" = "image.png";
 					"sourceTree" = "<group>";
-					"path" = "yy_yank.png";
+					"path" = "helps.png";
+				};
+			"45FF589CEAC14FC6A7194380" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "helps2.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "helps2.png";
+				};
+			"B18533B33D844F09B630B2CB" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "helps3.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "helps3.png";
+				};
+			"E67EC6550DF949D48BAD3A9B" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "helps4.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "helps4.png";
 				};
 		};
 	"rootObject" = "100000000000000000000001";

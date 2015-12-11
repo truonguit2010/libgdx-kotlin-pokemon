@@ -11,11 +11,19 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable
 class UIUtils {
 
     fun createImageButton(bg : TextureAtlas.AtlasRegion?, icon : TextureAtlas.AtlasRegion) : ImageButton {
+        if (bg == null) {
+            return createImageButton(null, TextureRegionDrawable(icon))
+        } else {
+            return createImageButton(TextureRegionDrawable(bg), TextureRegionDrawable(icon))
+        }
+    }
+
+    fun createImageButton(bg : TextureRegionDrawable?, icon : TextureRegionDrawable) : ImageButton {
         var style = ImageButton.ImageButtonStyle()
         if (bg != null) {
-            style.up = TextureRegionDrawable(bg)
+            style.up = bg
         }
-        style.imageUp = TextureRegionDrawable(icon)
+        style.imageUp = icon
         var btn = ImageButton(style)
         btn.image.touchable = Touchable.disabled
         return btn

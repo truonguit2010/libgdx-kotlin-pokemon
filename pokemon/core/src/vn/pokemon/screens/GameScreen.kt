@@ -43,7 +43,6 @@ class GameScreen : BaseScreen {
                 }
                 return
             }
-
             if (selectedImage == null && event?.target is Image) {
                 selectedImage = event?.target as PokemonImage
             } else if (event?.target is Image)  {
@@ -106,6 +105,8 @@ class GameScreen : BaseScreen {
     var line2 : Image
     var line3 : Image
 
+    val HINT_TIME : Float = 1.4f
+    val LINE_A : Float = 0.5f
 
     constructor(game: PokemonGame) : super(game) {
         var background = Image(game.assets.secondBackground)
@@ -300,19 +301,29 @@ class GameScreen : BaseScreen {
                 lineImage.height = cell.y + itemSize / 2 - lineImage.y
             }
         }
+        lineImage.color.a = LINE_A
+        lineImage.clearActions()
+        var action = Actions.fadeOut(HINT_TIME / 2)
+        lineImage.addAction(action)
         addActor(lineImage)
+        addActor(scoreLabel)
     }
 
     fun updatePokemons() {
         for (row in 0..numberOfRow) {
             var rowLog = ""
             for (col in 0..numberOfCol) {
-                var pId : String = algorithm.matrix.get(row + 1).get(col + 1)
+                var pId : String = algorithm.matrix[row + 1][col + 1]
                 var isInvisible = pId.equals(algorithm.barrier)
-                if (isInvisible == true) {
-                    Gdx.app.log("GameScreen", "Hide")
+                if (isInvisible == true && gameBoard[row][col].isVisible == true) {
+//                    Gdx.app.log("GameScreen", "Hide")
+                    // Do effect
+                    gameBoard[row][col].touchable = Touchable.disabled
+                    var action = Actions.sequence(Actions.scaleTo(1.2f, 1.2f, HINT_TIME / 4), Actions.parallel(Actions.scaleTo(0f, 0f, HINT_TIME / 2), Actions.fadeOut(HINT_TIME / 2)))
+                    gameBoard[row][col].addAction(action)
+                    addActor(gameBoard[row][col])
                 }
-                gameBoard.get(row).get(col).isVisible = !isInvisible
+//                gameBoard.get(row).get(col).isVisible = !isInvisible
                 rowLog += pId + " "
             }
             Gdx.app.log("Update Pokemon", rowLog)
@@ -327,6 +338,7 @@ class GameScreen : BaseScreen {
             for (item in row) {
                 item.setPosition(x.toFloat(), y.toFloat())
                 item.setSize(itemSize.toFloat(), itemSize.toFloat())
+                item.setOrigin(item.width / 2, item.height / 2)
                 item.setScaling(Scaling.stretch)
                 addActor(item)
                 x += itemSize
@@ -335,8 +347,5 @@ class GameScreen : BaseScreen {
             y += itemSize
         }
     }
-
-
-
 
 }

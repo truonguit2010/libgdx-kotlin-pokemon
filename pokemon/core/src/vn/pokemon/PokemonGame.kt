@@ -42,7 +42,7 @@ public class PokemonGame : Game() {
 	var viewportHeight : Float = 960f
 
 	override fun create(): Unit {
-		calculateViewport()
+//		calculateViewport()
 
 		assets = Assets()
 		assets.loadSkin()

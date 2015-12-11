@@ -7,11 +7,13 @@ import com.badlogic.gdx.graphics.g2d.NinePatch
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.Touchable
+import com.badlogic.gdx.scenes.scene2d.actions.Actions
 import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable
 import com.badlogic.gdx.utils.Scaling
 import vn.pokemon.PokemonGame
 import vn.pokemon.utils.Algorithm
@@ -33,9 +35,6 @@ class GameScreen : BaseScreen {
         }
 
         override fun tap(event: InputEvent?, x: Float, y: Float, count: Int, button: Int) {
-//            if (count > 0) {
-//                return
-//            }
             if (event!!.target is ImageButton)  {
                 when (event!!.target.name) {
                     "back_button" -> {
@@ -49,8 +48,8 @@ class GameScreen : BaseScreen {
                 selectedImage = event?.target as PokemonImage
             } else if (event?.target is Image)  {
                 var lastSelectedImage = event?.target as PokemonImage
-                var connectionLine : MyLine? = algorithm.checkTwoPointOK(selectedImage!!.point, lastSelectedImage.point)
-                if (connectionLine == null) {
+                var connectionPath : HintPath? = algorithm.checkTwoPointOK(selectedImage!!.point, lastSelectedImage.point)
+                if (connectionPath == null) {
                     // Wrong, reset all selections.
                     selectedImage!!.color.a = 1f
                     lastSelectedImage.color.a = 1f
@@ -67,6 +66,8 @@ class GameScreen : BaseScreen {
                     algorithm.resetPoint(lastSelectedImage.point)
 
                     updatePokemons()
+                    setHintPath(connectionPath)
+
                 }
                 selectedImage = null
             }
@@ -101,9 +102,12 @@ class GameScreen : BaseScreen {
 
     var scoreLabel : Label
 
+    var line1 : Image
+    var line2 : Image
+    var line3 : Image
+
 
     constructor(game: PokemonGame) : super(game) {
-
         var background = Image(game.assets.secondBackground)
         background.setScaling(Scaling.stretch)
         background.setSize(width, height)
@@ -119,6 +123,7 @@ class GameScreen : BaseScreen {
 
         algorithm.gameSkinType = "a"
 
+        // Calculate number of column and number of row for device.
         topHeight = (height / 6).toInt()
         boardHeight = (height - topHeight).toInt()
         numberOfCol = 7
@@ -132,6 +137,7 @@ class GameScreen : BaseScreen {
 
         // Set lai number of col
         numberOfCol = 5
+        // End of calculation
 
         var labelStyle = Label.LabelStyle()
         labelStyle.font = game.assets.scoreFont
@@ -143,6 +149,13 @@ class GameScreen : BaseScreen {
 
         initGameBoard()
         addGameBoardToScreen()
+
+        line1 = Image(game.assets.greenLine)
+        line2 = Image(game.assets.greenLine)
+        line3 = Image(game.assets.greenLine)
+
+//        setHintLine(MyLine(Point(0,0), Point(0, numberOfCol + 2)), line1)
+//        setHintLine(MyLine(Point(numberOfRow,0), Point(numberOfRow, numberOfCol + 1)), line1)
     }
 
     fun setScoreLabel(score : Int) = scoreLabel.setText("Score: " + score)
@@ -165,6 +178,131 @@ class GameScreen : BaseScreen {
         }
     }
 
+    fun setHintPath(path : HintPath) {
+        if (path.line1 != null && !path.line1!!.isPoint()) {
+            setHintLine(path.line1!!, line1)
+        } else {
+            line1.remove()
+        }
+        if (path.line2 != null && !path.line2!!.isPoint()) {
+            setHintLine(path.line2!!, line2)
+        } else {
+            line2.remove()
+        }
+        if (path.line3 != null && !path.line3!!.isPoint()) {
+            setHintLine(path.line3!!, line3)
+        } else {
+            line3.remove()
+        }
+    }
+
+    fun setHintLine(line : MyLine, lineImage : Image) {
+        Gdx.app.log(TAG, "setHintLine " + line.toString())
+        var min = line.p1
+        var max = line.p2
+        var extra = 20
+        var cell : PokemonImage
+        if (line.isRow()) {
+            lineImage.drawable = NinePatchDrawable(game.assets.greenLine)
+            lineImage.height = lineImage.drawable.minHeight
+            if (line.p1.col > line.p2.col) {
+                min = line.p2
+                max = line.p1
+            }
+
+            if (min.col == 0 && min.row == 0) {
+                // Left - Bottom
+                cell = gameBoard[0][0]
+                lineImage.setPosition(cell.x - extra, cell.y - extra)
+            } else if (min.col == 0 && min.row == numberOfRow + 2) {
+                // Left - Top
+                cell = gameBoard[numberOfRow][0]
+                lineImage.setPosition(cell.x - extra, cell.y + itemSize + extra)
+            } else if (min.col == 0) {
+                // Left - Center
+                cell = gameBoard[min.row - 1][0]
+                lineImage.setPosition(cell.x - extra, cell.y + itemSize / 2)
+            } else if (min.row == 0) {
+                // Bottom
+                cell = gameBoard[0][min.col - 1]
+                lineImage.setPosition(cell.x + itemSize / 2, cell.y - extra)
+            } else if (min.row == numberOfRow + 2) {
+                // Top
+                cell = gameBoard[numberOfRow][min.col - 1]
+                lineImage.setPosition(cell.x + itemSize / 2, cell.y + itemSize + extra)
+            } else {
+                // In board
+                cell = gameBoard[min.row - 1][min.col - 1]
+                lineImage.setPosition(cell.x + itemSize / 2, cell.y + itemSize / 2)
+            }
+
+            if (max.col == numberOfCol + 2) {
+                // To Right Edge
+                cell = gameBoard[0][numberOfCol]
+                lineImage.width = cell.x + itemSize + extra - lineImage.x
+            }
+//            else if (max.col == 0) {
+//                // Left
+//                cell = gameBoard[0][0]
+//                lineImage.width = cell.x + extra - lineImage.x
+//            }
+            else {
+                cell = gameBoard[0][max.col - 1]
+                lineImage.width = cell.x + itemSize / 2 - lineImage.x
+            }
+        } else {
+            lineImage.drawable = NinePatchDrawable(game.assets.greenLineVer)
+            lineImage.width = lineImage.drawable.minWidth
+            if (line.p1.row > line.p2.row) {
+                min = line.p2
+                max = line.p1
+            }
+
+            if (min.row == 0 && min.col == 0) {
+                // Bottom - Left
+                cell = gameBoard[0][0]
+                lineImage.setPosition(cell.x - extra, cell.y - extra)
+            } else if (min.row == 0 && min.col == numberOfCol + 2) {
+                // Bottom - Right
+                cell = gameBoard[0][numberOfCol]
+                lineImage.setPosition(cell.x + itemSize + extra, cell.y - extra)
+            } else if (min.row == 0) {
+                // Bottom - Center
+                cell = gameBoard[0][min.col - 1]
+                lineImage.setPosition(cell.x + itemSize / 2, cell.y - extra)
+            } else if(min.col == 0) {
+                // Left
+                cell = gameBoard[min.row - 1][0]
+                lineImage.setPosition(cell.x - extra, cell.y + itemSize / 2)
+            } else if (min.col == numberOfCol + 2) {
+                // Right
+                cell = gameBoard[min.row - 1][numberOfCol]
+                lineImage.setPosition(cell.x + itemSize + extra, cell.y + itemSize / 2)
+            } else {
+                // In board
+                cell = gameBoard[min.row - 1][min.col - 1]
+                lineImage.setPosition(cell.x + itemSize / 2, cell.y + itemSize / 2)
+            }
+
+            if (max.row == numberOfRow + 2) {
+                // Top
+                cell = gameBoard[numberOfRow][0]
+                lineImage.height = cell.y + itemSize + extra - lineImage.y
+            }
+//            else if (max.row == 0) {
+//                // Bottom
+//                cell = gameBoard[0][0]
+//                lineImage.height = cell.y + extra - lineImage.y
+//            }
+            else {
+                // In board
+                cell = gameBoard[max.row - 1][0]
+                lineImage.height = cell.y + itemSize / 2 - lineImage.y
+            }
+        }
+        addActor(lineImage)
+    }
+
     fun updatePokemons() {
         for (row in 0..numberOfRow) {
             var rowLog = ""
@@ -183,7 +321,7 @@ class GameScreen : BaseScreen {
 
     fun addGameBoardToScreen() {
         var x = boardPadding.toFloat()
-        var y = numberOfRow * itemSize + boardPadding
+        var y = boardPadding
 
         for (row in gameBoard) {
             for (item in row) {
@@ -194,7 +332,7 @@ class GameScreen : BaseScreen {
                 x += itemSize
             }
             x = boardPadding.toFloat()
-            y -= itemSize
+            y += itemSize
         }
     }
 

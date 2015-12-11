@@ -20,6 +20,14 @@ class MyLine {
         return this.p1.col == this.p2.col
     }
 
+    fun isPoint() : Boolean {
+        return isRow() && isCol()
+    }
+
+    override fun toString(): String {
+        return p1.toString() + " to " + p2.toString()
+    }
+
     //        public String toString() {
     //            String string = "(" + p1.x + "," + p1.y + ") and (" + p2.x + "," + p2.y
     //            + ")";

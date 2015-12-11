@@ -6,6 +6,7 @@ import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver
 import com.badlogic.gdx.assets.loaders.resolvers.ResolutionFileResolver
 import com.badlogic.gdx.assets.loaders.resolvers.ResolutionFileResolver.Resolution
 import com.badlogic.gdx.graphics.g2d.BitmapFont
+import com.badlogic.gdx.graphics.g2d.NinePatch
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
@@ -37,6 +38,8 @@ class Assets : ManagedAsset {
     lateinit var timeText : TextureAtlas.AtlasRegion
 
     lateinit var backButton : TextureAtlas.AtlasRegion
+    lateinit var greenLine : NinePatch
+    lateinit var greenLineVer : NinePatch
 
     val SCORE_FONT = "fonts/font.fnt"
     lateinit var scoreFont : BitmapFont
@@ -80,6 +83,8 @@ class Assets : ManagedAsset {
         timeText = atlas.findRegion("time_text")
 
         backButton = atlas.findRegion("back")
+        greenLine = atlas.createPatch("green_line")
+        greenLineVer  = atlas.createPatch("green_line_ver")
     }
 
     fun loadPokermons() {

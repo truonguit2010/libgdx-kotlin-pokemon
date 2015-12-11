@@ -2,6 +2,7 @@ package vn.pokemon.utils
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.math.Vector2
+import vn.pokemon.model.HintPath
 import java.net.PortUnreachableException
 import java.util.*
 import vn.pokemon.model.Point
@@ -84,6 +85,7 @@ class Algorithm {
     }
 
     fun findGeneralPath(p1 : Point, p2 : Point) : ArrayList<MyLine> {
+        Gdx.app.log(TAG, "findGeneralPath (${p1.row}, ${p1.col}) to (${p2.row}, ${p2.col})")
         var results = ArrayList<MyLine>()
         var ok = false
 
@@ -91,7 +93,7 @@ class Algorithm {
         var min = Math.min(p1.col, p2.col)
         var max = Math.max(p1.col, p2.col)
         if (min < max) {
-            if (max - min == 1) {
+            if (max - min == 1 && p1.row == p2.row) {
                 results.add(MyLine(p1, p2))
             } else {
                 for (row in 0..(matrix.size - 1)) {
@@ -104,6 +106,7 @@ class Algorithm {
                         }
                     }
                     if (ok == true) {
+                        Gdx.app.log(TAG, "Row ($row, $min) to ($row, $max)")
                         results.add(MyLine(Point(row, min), Point(row, max)))
                     }
                 }
@@ -113,7 +116,7 @@ class Algorithm {
         min = Math.min(p1.row, p2.row)
         max = Math.max(p1.row, p2.row)
         if (min < max) {
-            if (max - min == 1) {
+            if (max - min == 1 && p1.col == p2.col) {
                 results.add(MyLine(p1, p2))
             } else {
                 for (col in 0..(matrix.get(0).size - 1)) {
@@ -126,6 +129,7 @@ class Algorithm {
                         }
                     }
                     if (ok == true) {
+                        Gdx.app.log(TAG, "Col ($min, $col) to ($max, $col)")
                         results.add(MyLine(Point(min, col), Point(max, col)))
                     }
                 }
@@ -134,48 +138,78 @@ class Algorithm {
         return results
     }
 
-    fun isConnectedToRow(p : Point, l : MyLine) : Boolean {
+    fun isConnectedToRow(p : Point, l : MyLine) : MyLine? {
         var min = Math.min(p.row, l.p1.row)
         var max = Math.max(p.row, l.p1.row)
-        min++
-        max--
-        for (row in min .. max) {
-            if (!matrix.get(row).get(p.col).equals(barrier)) {
-                // false - khong tinh hang nay.
-                return false
+        if (max - min > 1) {
+            min++
+            max--
+            for (row in min..max) {
+                if (!matrix.get(row).get(p.col).equals(barrier)) {
+                    // false - khong tinh hang nay.
+                    return null
+                }
             }
         }
-        return true
+        var connectedPoint = if (p.col == l.p1.col) l.p1 else l.p2
+        var line = MyLine(p, connectedPoint)
+        return line
     }
 
-    fun isConnectedToCol(p : Point, l : MyLine) : Boolean {
+    fun isConnectedToCol(p : Point, l : MyLine) : MyLine? {
         var min = Math.min(p.col, l.p1.col)
         var max = Math.max(p.col, l.p1.col)
-        min++
-        max--
-        for (col in min .. max) {
-            if (!matrix.get(p.row).get(col).equals(barrier)) {
-                // false - khong tinh hang nay.
-                return false
+        if (max - min > 1) {
+            min++
+            max--
+            for (col in min..max) {
+                if (!matrix.get(p.row).get(col).equals(barrier)) {
+                    // false - khong tinh hang nay.
+                    return null
+                }
             }
         }
-        return true
+        var connectedPoint = if (p.row == l.p1.row) l.p1 else l.p2
+        var line = MyLine(p, connectedPoint)
+        return line
     }
 
-    fun checkTwoPointOK(p1 : Point, p2 : Point) : MyLine? {
+    fun checkTwoPointOK(p1 : Point, p2 : Point) : HintPath? {
+        if (matrix[p1.row][p1.col] != matrix[p2.row][p2.col]) {
+            return null
+        }
+        if (p1.isEqualTo(p2)) {
+            return null
+        }
         var mlines = findGeneralPath(p1, p2)
         for (line in mlines) {
             if (line.isRow()) {
                 var isP1 = isConnectedToRow(p1, line)
                 var isP2 = isConnectedToRow(p2, line)
-                if (isP1 == true && isP2 == true) {
-                    return line
+                if (isP1 != null && isP2 != null) {
+                    return HintPath(isP1, line, isP2)
                 }
             } else {
                 var isP1 = isConnectedToCol(p1, line)
                 var isP2 = isConnectedToCol(p2, line)
-                if (isP1 == true && isP2 == true) {
-                    return line
+                if (isP1 != null && isP2 != null) {
+                    return HintPath(isP1, line, isP2)
+                }
+            }
+        }
+        return null
+    }
+
+    fun getHint() : HintPath? {
+        for (row1 in 0 .. matrix.size) {
+            for (col1 in 0 .. matrix[0].size) {
+                for (row2 in 0 .. matrix.size) {
+                    for (col2 in 0 .. matrix[0].size) {
+                        var line = checkTwoPointOK(Point(row1, col1), Point(row2, col2))
+                        if (line != null) {
+                            return line
+                        }
+                    }
                 }
             }
         }

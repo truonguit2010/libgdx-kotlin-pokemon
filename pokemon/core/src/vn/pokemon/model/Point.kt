@@ -14,7 +14,7 @@ class Point {
     }
 
     override fun toString(): String {
-        return "{ Point $row, $col }"
+        return "($row, $col)"
     }
 
     fun isEqualTo(p : Point) : Boolean {

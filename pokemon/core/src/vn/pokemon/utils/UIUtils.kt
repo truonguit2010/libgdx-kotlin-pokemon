@@ -1,8 +1,11 @@
 package vn.pokemon.utils
 
+import com.badlogic.gdx.graphics.Color
+import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton
+import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable
 
 /**
@@ -27,5 +30,13 @@ class UIUtils {
         var btn = ImageButton(style)
         btn.image.touchable = Touchable.disabled
         return btn
+    }
+
+    fun createLabel(text : String, font: BitmapFont, color : Color) : Label {
+        var style =  Label.LabelStyle()
+        style.font = font
+        style.fontColor = color
+        var label = Label(text, style)
+        return label
     }
 }

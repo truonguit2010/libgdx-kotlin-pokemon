@@ -23,6 +23,7 @@ import vn.pokemon.utils.Algorithm
 import vn.pokemon.asset.Assets
 import vn.pokemon.ui.PokemonImage
 import vn.pokemon.model.*
+import vn.pokemon.ui.LevelClearedDialog
 import java.util.*
 
 /**
@@ -222,6 +223,15 @@ class GameScreen : BaseScreen {
 
 //        setHintLine(MyLine(Point(0,0), Point(0, numberOfCol + 2)), line1)
 //        setHintLine(MyLine(Point(numberOfRow,0), Point(numberOfRow, numberOfCol + 1)), line1)
+    }
+
+    fun showLevelClearedDialog() {
+        var levelClearedDialog = LevelClearedDialog(game, 1)
+        levelClearedDialog.width = game.assets.levelClearedDialogBackground.minWidth
+        levelClearedDialog.height = game.assets.levelClearedDialogBackground.minHeight// * ( ( game.assets.levelClearedDialogBackground.minWidth - levelClearedDialog.width) / levelClearedDialog.width )
+        levelClearedDialog.x = (width - levelClearedDialog.width) / 2
+        levelClearedDialog.y = (height - levelClearedDialog.height) / 2
+        addActor(levelClearedDialog)
     }
 
     override fun show() {

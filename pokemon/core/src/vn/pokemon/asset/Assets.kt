@@ -48,12 +48,20 @@ class Assets : ManagedAsset {
     lateinit var settingsButton : TextureRegionDrawable
 
     lateinit var playButton : TextureRegionDrawable
+    lateinit var levelClearedDialogBackground : TextureRegionDrawable
+    lateinit var nextButton : TextureRegionDrawable
+    lateinit var menuButton : TextureRegionDrawable
+    var stars : ArrayList<TextureRegionDrawable> = ArrayList()
+    var emptyStars : ArrayList<TextureRegionDrawable> = ArrayList()
 
     val HELP_ATLAS : String = "atlas/helps.atlas"
     var helps : ArrayList<TextureRegionDrawable> = ArrayList()
 
     val SCORE_FONT = "fonts/font.fnt"
     lateinit var scoreFont : BitmapFont
+
+    val DEFAULT_FONT = "fonts/default.fnt"
+    lateinit var defaultFont : BitmapFont
 
 
     constructor() : super() {
@@ -69,8 +77,10 @@ class Assets : ManagedAsset {
 
     fun loadFont() {
         loadBitmapFont(SCORE_FONT)
+        loadBitmapFont(DEFAULT_FONT)
         finishLoading()
         scoreFont = getBitmapFont(SCORE_FONT)
+        defaultFont = getBitmapFont(DEFAULT_FONT)
     }
 
     fun loadBackgrounds() {
@@ -101,6 +111,15 @@ class Assets : ManagedAsset {
         leaderBoardButton = TextureRegionDrawable(atlas.findRegion("leader_board_button"))
         settingsButton = TextureRegionDrawable(atlas.findRegion("setting_button"))
         playButton = TextureRegionDrawable(atlas.findRegion("play_button"))
+
+        levelClearedDialogBackground = TextureRegionDrawable(atlas.findRegion("level_cleared_dialog"))
+        nextButton = TextureRegionDrawable(atlas.findRegion("next_button"))
+        menuButton = TextureRegionDrawable(atlas.findRegion("menu_button"))
+
+        for (i in 1 .. 3) {
+            stars.add(TextureRegionDrawable(atlas.findRegion("S0" + i)))
+            emptyStars.add(TextureRegionDrawable(atlas.findRegion("S0" + i + "_empty")))
+        }
     }
 
     fun loadHelps() {

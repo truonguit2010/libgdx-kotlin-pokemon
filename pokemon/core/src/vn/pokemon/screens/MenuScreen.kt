@@ -74,12 +74,12 @@ class MenuScreen : BaseScreen {
         normalButton.addListener(TapListener())
         addActor(normalButton)
 
-        var timeButton = game.uiUtils.createImageButton(game.assets.yellowButtonBackground, game.assets.timeText)
-        timeButton.name = "time_button"
-        timeButton.x = width / 2 - timeButton.width / 2
-        timeButton.y = normalButton.y - 10 - timeButton.height
-        timeButton.addListener(TapListener())
-        addActor(timeButton)
+        var hardButton = game.uiUtils.createImageButton(game.assets.yellowButtonBackground, game.assets.hardText)
+        hardButton.name = "time_button"
+        hardButton.x = width / 2 - hardButton.width / 2
+        hardButton.y = normalButton.y - 10 - hardButton.height
+        hardButton.addListener(TapListener())
+        addActor(hardButton)
 
         var helpButton = game.uiUtils.createImageButton(null, game.assets.helpButton)
         helpButton.name = "help_button"
@@ -99,7 +99,7 @@ class MenuScreen : BaseScreen {
         table.add(settingButton)
         table.width = width
         table.height = game.assets.helpButton.minHeight
-        table.y = timeButton.y - 50 - table.height
+        table.y = hardButton.y - 50 - table.height
         addActor(table)
 
 //        var levelClearedDialog = LevelClearedDialog(game, 1)

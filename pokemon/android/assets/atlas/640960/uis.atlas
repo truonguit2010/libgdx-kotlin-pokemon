@@ -173,9 +173,16 @@ S03_empty
   orig: 63, 64
   offset: 0, 0
   index: -1
+hard_text
+  rotate: false
+  xy: 678, 779
+  size: 77, 31
+  orig: 77, 31
+  offset: 0, 0
+  index: -1
 time_text
   rotate: false
-  xy: 678, 778
+  xy: 1, 23
   size: 76, 32
   orig: 76, 32
   offset: 0, 0
@@ -203,7 +210,7 @@ loading_progress
   index: -1
 green_line_ver
   rotate: false
-  xy: 1, 17
+  xy: 79, 17
   size: 30, 38
   split: 10, 10, 12, 12
   orig: 30, 38

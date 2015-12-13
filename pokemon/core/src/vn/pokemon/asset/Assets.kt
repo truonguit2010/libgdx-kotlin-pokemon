@@ -40,6 +40,7 @@ class Assets : ManagedAsset {
 
     lateinit var normalText : TextureAtlas.AtlasRegion
     lateinit var timeText : TextureAtlas.AtlasRegion
+    lateinit var hardText : TextureAtlas.AtlasRegion
 
     lateinit var backButton : TextureAtlas.AtlasRegion
     lateinit var greenLine : NinePatch
@@ -107,6 +108,7 @@ class Assets : ManagedAsset {
 
         normalText = atlas.findRegion("normal_text")
         timeText = atlas.findRegion("time_text")
+        hardText = atlas.findRegion("hard_text")
 
         backButton = atlas.findRegion("back")
         greenLine = atlas.createPatch("green_line")

@@ -1,4 +1,4 @@
-package pokemon.adnroid
+package pokemon.android
 
 import android.os.Bundle
 

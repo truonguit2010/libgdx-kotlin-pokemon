@@ -24,6 +24,7 @@ import vn.pokemon.asset.Assets
 import vn.pokemon.ui.PokemonImage
 import vn.pokemon.model.*
 import vn.pokemon.ui.LevelClearedDialog
+import vn.pokemon.ui.LevelInfoDialog
 import java.util.*
 
 /**
@@ -36,12 +37,17 @@ class GameScreen : BaseScreen {
 
     inner class EatEffectDoneAction : Action {
 
+        var isGameEnd : Boolean = false
         constructor() : super() {
 
         }
 
         override fun act(delta: Float): Boolean {
-            reOrderMatrix()
+            if (isGameEnd) {
+                endGame()
+            } else {
+                reOrderMatrix()
+            }
             return true
         }
     }
@@ -82,6 +88,22 @@ class GameScreen : BaseScreen {
                     "back_button" -> {
                         game.showMenuScreen()
                     }
+                    "start_game" -> {
+                        startGame()
+                    }
+                    "show_help" -> {
+                        game.showHelpScreen()
+                    }
+                    "menu_button" -> {
+                        game.showMenuScreen()
+                    }
+                    "next_game_button" -> {
+                        if (gameType == GAME_TYPE_NORMAL) {
+                            game.showGameScreen("normal")
+                        } else {
+                            game.showGameScreen("hidden")
+                        }
+                    }
                 }
                 return
             }
@@ -90,7 +112,7 @@ class GameScreen : BaseScreen {
                 if (gameType == GAME_TYPE_HIDDEN) {
                     openPokemon(selectedImage)
                 }
-            } else if (event?.target is Image)  {
+            } else if (event?.target is PokemonImage)  {
                 var lastSelectedImage = event?.target as PokemonImage
                 var connectionPath : HintPath? = algorithm.checkTwoPointOK(selectedImage!!.point, lastSelectedImage.point)
                 if (connectionPath == null) {
@@ -173,6 +195,8 @@ class GameScreen : BaseScreen {
     val GAME_TYPE_NORMAL = 0
     val GAME_TYPE_HIDDEN = 1
     var gameType: Int = GAME_TYPE_NORMAL
+    var levelInfoDialog : LevelInfoDialog? = null
+    lateinit var levelClearedDialog : LevelClearedDialog
 
     constructor(game: PokemonGame) : super(game) {
         var background = Image(game.assets.secondBackground)
@@ -225,18 +249,24 @@ class GameScreen : BaseScreen {
 //        setHintLine(MyLine(Point(numberOfRow,0), Point(numberOfRow, numberOfCol + 1)), line1)
     }
 
-    fun showLevelClearedDialog() {
-        var levelClearedDialog = LevelClearedDialog(game, 1)
-        levelClearedDialog.width = game.assets.levelClearedDialogBackground.minWidth
-        levelClearedDialog.height = game.assets.levelClearedDialogBackground.minHeight// * ( ( game.assets.levelClearedDialogBackground.minWidth - levelClearedDialog.width) / levelClearedDialog.width )
-        levelClearedDialog.x = (width - levelClearedDialog.width) / 2
-        levelClearedDialog.y = (height - levelClearedDialog.height) / 2
-        addActor(levelClearedDialog)
+    fun startGame() {
+        if (levelInfoDialog != null) {
+            levelInfoDialog!!.remove()
+        }
     }
 
     override fun show() {
         super.show()
+        // Show info dialog
 
+        if (levelInfoDialog == null) {
+            levelInfoDialog = showGameInfoDialog()
+        }
+        levelInfoDialog!!.infoLabel.setText("You must find out all couple and clear all items")
+        levelInfoDialog!!.btnPlayGame.addListener(PokemonGestureListener())
+        levelInfoDialog!!.btnPlayGame.name = "start_game"
+        levelInfoDialog!!.btnHelp.name = "show_help"
+        levelInfoDialog!!.btnHelp.addListener(PokemonGestureListener())
     }
 
     fun changeGameType(gameType : Int) {
@@ -449,6 +479,11 @@ class GameScreen : BaseScreen {
                         gameBoard[row][col].addAction(action)
                     } else {
                         var action = Actions.sequence(Actions.scaleTo(1.2f, 1.2f, HINT_TIME / 4), Actions.parallel(Actions.scaleTo(0f, 0f, HINT_TIME / 2), Actions.fadeOut(HINT_TIME / 2)))
+                        if (algorithm.isClear()) {
+                            var a = EatEffectDoneAction()
+                            a.isGameEnd = true
+                            action = Actions.sequence(action, a)
+                        }
                         if (gameType == GAME_TYPE_HIDDEN) {
                             action = Actions.sequence(Actions.delay(0.3f), action)
                         }
@@ -488,7 +523,7 @@ class GameScreen : BaseScreen {
             for (col in 0..numberOfCol) {
                 var pId : String = algorithm.matrix[row + 1][col + 1]
                 if (!pId.equals(algorithm.barrier)) {
-                    var region: TextureAtlas.AtlasRegion = game.assets.getPokemon(pId) as TextureAtlas.AtlasRegion
+                    var region: TextureRegionDrawable = game.assets.getPokemon(pId) as TextureRegionDrawable
                     var img = gameBoard[row][col]
                     img.clearActions()
                     img.setScale(1f)
@@ -508,5 +543,31 @@ class GameScreen : BaseScreen {
             }
         }
     }
+
+    fun showGameInfoDialog() : LevelInfoDialog {
+        var levelClearedDialog = LevelInfoDialog(game, 1)
+        levelClearedDialog.width = game.assets.levelInfoDialogBackground.minWidth
+        levelClearedDialog.height = game.assets.levelInfoDialogBackground.minHeight
+        addActor(levelClearedDialog)
+        return levelClearedDialog
+    }
+
+    fun endGame() {
+        var levelClearedDialog = LevelClearedDialog(game, 2)
+        levelClearedDialog.width = game.assets.levelClearedDialogBackground.minWidth
+        levelClearedDialog.height = game.assets.levelClearedDialogBackground.minHeight
+        levelClearedDialog.x = (width - levelClearedDialog.width) / 2
+        levelClearedDialog.y = (height - levelClearedDialog.height) / 2
+        levelClearedDialog.yourScore.setText("Your score: " + score)
+
+        levelClearedDialog.btnMenu.name = "menu_button"
+        levelClearedDialog.btnMenu.addListener(PokemonGestureListener())
+
+        levelClearedDialog.btnNext.name = "next_game_button"
+        levelClearedDialog.btnNext.addListener(PokemonGestureListener())
+
+        addActor(levelClearedDialog)
+    }
+
 
 }

@@ -8,6 +8,8 @@ import com.badlogic.gdx.assets.loaders.resolvers.ResolutionFileResolver.Resoluti
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.NinePatch
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
+import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.Pixmap
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable
@@ -49,6 +51,7 @@ class Assets : ManagedAsset {
 
     lateinit var playButton : TextureRegionDrawable
     lateinit var levelClearedDialogBackground : TextureRegionDrawable
+    lateinit var levelInfoDialogBackground : TextureRegionDrawable
     lateinit var nextButton : TextureRegionDrawable
     lateinit var menuButton : TextureRegionDrawable
     var stars : ArrayList<TextureRegionDrawable> = ArrayList()
@@ -62,6 +65,8 @@ class Assets : ManagedAsset {
 
     val DEFAULT_FONT = "fonts/default.fnt"
     lateinit var defaultFont : BitmapFont
+
+    lateinit var stageBackground : TextureRegionDrawable
 
 
     constructor() : super() {
@@ -113,6 +118,7 @@ class Assets : ManagedAsset {
         playButton = TextureRegionDrawable(atlas.findRegion("play_button"))
 
         levelClearedDialogBackground = TextureRegionDrawable(atlas.findRegion("level_cleared_dialog"))
+        levelInfoDialogBackground = TextureRegionDrawable(atlas.findRegion("level_info"))
         nextButton = TextureRegionDrawable(atlas.findRegion("next_button"))
         menuButton = TextureRegionDrawable(atlas.findRegion("menu_button"))
 
@@ -161,4 +167,13 @@ class Assets : ManagedAsset {
 
     }
 
+    fun genStageBackground() {
+//        var p = Pixmap(1, 1, Pixmap.Format.Alpha)
+        var p = Pixmap(1, 1, Pixmap.Format.RGBA4444)
+        p.setColor(0F, 0F, 0F, 0.3f)
+        p.fill()
+        var texture = Texture(p)
+
+        stageBackground = TextureRegionDrawable(TextureRegion(texture))
+    }
 }

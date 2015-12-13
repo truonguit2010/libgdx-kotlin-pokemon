@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import vn.pokemon.asset.Assets
+import vn.pokemon.screens.BaseScreen
 import vn.pokemon.screens.GameScreen
 import vn.pokemon.screens.HelpScreen
 import vn.pokemon.screens.MenuScreen
@@ -53,6 +54,7 @@ public class PokemonGame : Game() {
 		assets.loadUis()
 		assets.loadHelps()
 		assets.loadPokermons()
+		assets.genStageBackground()
 
 		uiUtils = UIUtils()
 
@@ -85,6 +87,7 @@ public class PokemonGame : Game() {
 	}
 
 	fun showHelpScreen() {
+		helpScreen.lastScreenName = screen as BaseScreen
 		setScreen(helpScreen)
 	}
 

@@ -102,12 +102,12 @@ class MenuScreen : BaseScreen {
         table.y = timeButton.y - 50 - table.height
         addActor(table)
 
-        var levelClearedDialog = LevelClearedDialog(game, 1)
-        levelClearedDialog.width = game.assets.levelClearedDialogBackground.minWidth
-        levelClearedDialog.height = game.assets.levelClearedDialogBackground.minHeight// * ( ( game.assets.levelClearedDialogBackground.minWidth - levelClearedDialog.width) / levelClearedDialog.width )
-        levelClearedDialog.x = (width - levelClearedDialog.width) / 2
-        levelClearedDialog.y = (height - levelClearedDialog.height) / 2
-        addActor(levelClearedDialog)
+//        var levelClearedDialog = LevelClearedDialog(game, 1)
+//        levelClearedDialog.width = game.assets.levelClearedDialogBackground.minWidth
+//        levelClearedDialog.height = game.assets.levelClearedDialogBackground.minHeight// * ( ( game.assets.levelClearedDialogBackground.minWidth - levelClearedDialog.width) / levelClearedDialog.width )
+//        levelClearedDialog.x = (width - levelClearedDialog.width) / 2
+//        levelClearedDialog.y = (height - levelClearedDialog.height) / 2
+//        addActor(levelClearedDialog)
     }
 
 }

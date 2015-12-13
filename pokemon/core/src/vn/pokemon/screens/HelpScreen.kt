@@ -23,7 +23,7 @@ class HelpScreen : BaseScreen{
         override fun tap(event: InputEvent?, x: Float, y: Float, count: Int, button: Int) {
             when (event!!.target.name) {
                 "next_button" -> {
-                    game.showMenuScreen()
+                    game.screen = lastScreenName
                 }
             }
         }
@@ -38,6 +38,7 @@ class HelpScreen : BaseScreen{
     }
 
     var scroll : PagedScrollPane
+    lateinit var lastScreenName : BaseScreen
 
     constructor(game : PokemonGame) : super(game) {
 

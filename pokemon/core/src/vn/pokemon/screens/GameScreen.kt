@@ -354,8 +354,8 @@ class GameScreen : BaseScreen {
         var extra = 20
         var cell : PokemonImage
         if (line.isRow()) {
-            lineImage.drawable = NinePatchDrawable(game.assets.greenLine)
-            lineImage.height = lineImage.drawable.minHeight
+            lineImage.drawable = game.assets.greenLine
+            lineImage.height = 6f
             if (line.p1.col > line.p2.col) {
                 min = line.p2
                 max = line.p1
@@ -402,8 +402,8 @@ class GameScreen : BaseScreen {
                 lineImage.width = cell.x + itemSize / 2 - lineImage.x
             }
         } else {
-            lineImage.drawable = NinePatchDrawable(game.assets.greenLineVer)
-            lineImage.width = lineImage.drawable.minWidth
+            lineImage.drawable = game.assets.greenLine
+            lineImage.width = 6f
             if (line.p1.row > line.p2.row) {
                 min = line.p2
                 max = line.p1

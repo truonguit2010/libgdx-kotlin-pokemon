@@ -91,7 +91,7 @@
 				{
 					"isa" = "PBXGroup";
 					"children" =
-						("549A2EB1AC6F4554BEB43F61", "6E71ACC178A74F548E6A4727", "3558D28F91FF49178DE3214A",
+						("C37609076B5E4869B13E0BA3", "DCB779F246154B419EFE1699", "3558D28F91FF49178DE3214A",
  "5EDEAF4DAD6C415ABBE52F07", "C45177B4CED84CA0A01953B8", "2924C3EBB4A64856A444388E",
  "2A3AA860182049BDA625733A", "A1D918DE29524124B290558D", "5E2C776B7F7E434E97671B85",
  "A749777B60F149048F4DCC86", "7F760B42742A40EFA9900B99", "9E6A8C44297B4C3B91E28E8A",
@@ -116,132 +116,6 @@
 					"name" = "Supporting Files";
 					"sourceTree" = "<absolute>";
 					"path" = "/Users/truongps/libgdx-kotlin-pokemon/pokemon/ios";
-				};
-			"5BD5F4023C5A4F2A85CF9EFB" =
-				{
-					"isa" = "PBXFileReference";
-					"name" = "background.png";
-					"lastKnownFileType" = "image.png";
-					"sourceTree" = "<group>";
-					"path" = "background.png";
-				};
-			"549A2EB1AC6F4554BEB43F61" =
-				{
-					"isa" = "PBXGroup";
-					"children" =
-						("C239C2942B4146339FF29FBF");
-					"name" = "atlas";
-					"sourceTree" = "<group>";
-					"path" = "atlas";
-				};
-			"C239C2942B4146339FF29FBF" =
-				{
-					"isa" = "PBXGroup";
-					"children" =
-						("5BD5F4023C5A4F2A85CF9EFB", "C964C3B854384AD7A5D8A679", "90991050D4DB4B6896733EFC",
- "70490380D478460EB09BC531", "45FF589CEAC14FC6A7194380", "B18533B33D844F09B630B2CB",
- "E67EC6550DF949D48BAD3A9B", "A2FAECDC833A4473BAC56FEC", "998044B5C0904E85A1AA1E3E",
- "D65339266AB244E5867D860E");
-					"name" = "640960";
-					"sourceTree" = "<group>";
-					"path" = "640960";
-				};
-			"C964C3B854384AD7A5D8A679" =
-				{
-					"isa" = "PBXFileReference";
-					"name" = "background2.png";
-					"lastKnownFileType" = "image.png";
-					"sourceTree" = "<group>";
-					"path" = "background2.png";
-				};
-			"90991050D4DB4B6896733EFC" =
-				{
-					"isa" = "PBXFileReference";
-					"name" = "background3.png";
-					"lastKnownFileType" = "image.png";
-					"sourceTree" = "<group>";
-					"path" = "background3.png";
-				};
-			"A2FAECDC833A4473BAC56FEC" =
-				{
-					"isa" = "PBXFileReference";
-					"name" = "pokemons.png";
-					"lastKnownFileType" = "image.png";
-					"sourceTree" = "<group>";
-					"path" = "pokemons.png";
-				};
-			"998044B5C0904E85A1AA1E3E" =
-				{
-					"isa" = "PBXFileReference";
-					"name" = "uis.png";
-					"lastKnownFileType" = "image.png";
-					"sourceTree" = "<group>";
-					"path" = "uis.png";
-				};
-			"32B5735A78CE412D95A4AECC" =
-				{
-					"isa" = "PBXFileReference";
-					"name" = "font.png";
-					"lastKnownFileType" = "image.png";
-					"sourceTree" = "<group>";
-					"path" = "font.png";
-				};
-			"6E71ACC178A74F548E6A4727" =
-				{
-					"isa" = "PBXGroup";
-					"children" =
-						("E2FE18029C7E4F40A4B9B932", "32B5735A78CE412D95A4AECC");
-					"name" = "fonts";
-					"sourceTree" = "<group>";
-					"path" = "fonts";
-				};
-			"70490380D478460EB09BC531" =
-				{
-					"isa" = "PBXFileReference";
-					"name" = "helps.png";
-					"lastKnownFileType" = "image.png";
-					"sourceTree" = "<group>";
-					"path" = "helps.png";
-				};
-			"45FF589CEAC14FC6A7194380" =
-				{
-					"isa" = "PBXFileReference";
-					"name" = "helps2.png";
-					"lastKnownFileType" = "image.png";
-					"sourceTree" = "<group>";
-					"path" = "helps2.png";
-				};
-			"B18533B33D844F09B630B2CB" =
-				{
-					"isa" = "PBXFileReference";
-					"name" = "helps3.png";
-					"lastKnownFileType" = "image.png";
-					"sourceTree" = "<group>";
-					"path" = "helps3.png";
-				};
-			"E67EC6550DF949D48BAD3A9B" =
-				{
-					"isa" = "PBXFileReference";
-					"name" = "helps4.png";
-					"lastKnownFileType" = "image.png";
-					"sourceTree" = "<group>";
-					"path" = "helps4.png";
-				};
-			"D65339266AB244E5867D860E" =
-				{
-					"isa" = "PBXFileReference";
-					"name" = "uis2.png";
-					"lastKnownFileType" = "image.png";
-					"sourceTree" = "<group>";
-					"path" = "uis2.png";
-				};
-			"E2FE18029C7E4F40A4B9B932" =
-				{
-					"isa" = "PBXFileReference";
-					"name" = "default.png";
-					"lastKnownFileType" = "image.png";
-					"sourceTree" = "<group>";
-					"path" = "default.png";
 				};
 			"3558D28F91FF49178DE3214A" =
 				{
@@ -330,6 +204,132 @@
 					"lastKnownFileType" = "image.png";
 					"sourceTree" = "<group>";
 					"path" = "Icon@2x.png";
+				};
+			"A0A876C8EAA64EFE91F16676" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "background.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "background.png";
+				};
+			"C37609076B5E4869B13E0BA3" =
+				{
+					"isa" = "PBXGroup";
+					"children" =
+						("81A08344A9C14D59B81909B8");
+					"name" = "atlas";
+					"sourceTree" = "<group>";
+					"path" = "atlas";
+				};
+			"81A08344A9C14D59B81909B8" =
+				{
+					"isa" = "PBXGroup";
+					"children" =
+						("A0A876C8EAA64EFE91F16676", "6BDDA8757424489EAA28E9D5", "01468C9CB0D24074B3407220",
+ "EF3EDF924C44419A96FE732F", "D6DEB9D40F504B079C23E4DD", "2A3A5ED3F6F74A699831C95A",
+ "3D2F5B6519C64389B11AE553", "81C16DDEC17E483784153093", "9EB3C341AB954FD9B99E6C7F",
+ "5286BA0DC0E348A09AE548E5");
+					"name" = "640960";
+					"sourceTree" = "<group>";
+					"path" = "640960";
+				};
+			"6BDDA8757424489EAA28E9D5" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "background2.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "background2.png";
+				};
+			"01468C9CB0D24074B3407220" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "background3.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "background3.png";
+				};
+			"EF3EDF924C44419A96FE732F" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "helps.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "helps.png";
+				};
+			"D6DEB9D40F504B079C23E4DD" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "helps2.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "helps2.png";
+				};
+			"2A3A5ED3F6F74A699831C95A" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "helps3.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "helps3.png";
+				};
+			"3D2F5B6519C64389B11AE553" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "helps4.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "helps4.png";
+				};
+			"81C16DDEC17E483784153093" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "pokemons.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "pokemons.png";
+				};
+			"9EB3C341AB954FD9B99E6C7F" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "uis.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "uis.png";
+				};
+			"5286BA0DC0E348A09AE548E5" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "uis2.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "uis2.png";
+				};
+			"52B606810C0646F0AB69FC03" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "default.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "default.png";
+				};
+			"DCB779F246154B419EFE1699" =
+				{
+					"isa" = "PBXGroup";
+					"children" =
+						("52B606810C0646F0AB69FC03", "35F64ECC25254FE3B27FBF1A");
+					"name" = "fonts";
+					"sourceTree" = "<group>";
+					"path" = "fonts";
+				};
+			"35F64ECC25254FE3B27FBF1A" =
+				{
+					"isa" = "PBXFileReference";
+					"name" = "font.png";
+					"lastKnownFileType" = "image.png";
+					"sourceTree" = "<group>";
+					"path" = "font.png";
 				};
 		};
 	"rootObject" = "100000000000000000000001";

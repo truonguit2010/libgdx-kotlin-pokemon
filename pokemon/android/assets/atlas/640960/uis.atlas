@@ -208,41 +208,25 @@ loading_progress
   orig: 35, 33
   offset: 0, 0
   index: -1
-green_line_ver
-  rotate: false
-  xy: 79, 17
-  size: 30, 38
-  split: 10, 10, 12, 12
-  orig: 30, 38
-  offset: 0, 0
-  index: -1
-green_line
-  rotate: false
-  xy: 491, 180
-  size: 19, 15
-  split: 6, 6, 5, 5
-  orig: 19, 15
-  offset: 0, 0
-  index: -1
-green_line
-  rotate: false
-  xy: 1000, 1004
-  size: 15, 19
-  orig: 15, 19
-  offset: 0, 0
-  index: -1
 dot_light
   rotate: false
-  xy: 890, 812
+  xy: 1000, 1010
   size: 11, 13
   orig: 11, 13
   offset: 0, 0
   index: -1
 dot_dim
   rotate: false
-  xy: 604, 216
+  xy: 890, 814
   size: 11, 11
   orig: 11, 11
+  offset: 0, 0
+  index: -1
+green_line
+  rotate: false
+  xy: 670, 688
+  size: 1, 1
+  orig: 1, 1
   offset: 0, 0
   index: -1
 

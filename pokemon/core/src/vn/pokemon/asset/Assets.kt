@@ -43,8 +43,7 @@ class Assets : ManagedAsset {
     lateinit var hardText : TextureAtlas.AtlasRegion
 
     lateinit var backButton : TextureAtlas.AtlasRegion
-    lateinit var greenLine : NinePatch
-    lateinit var greenLineVer : NinePatch
+    lateinit var greenLine : TextureRegionDrawable
 
     lateinit var helpButton : TextureRegionDrawable
     lateinit var leaderBoardButton : TextureRegionDrawable
@@ -111,8 +110,7 @@ class Assets : ManagedAsset {
         hardText = atlas.findRegion("hard_text")
 
         backButton = atlas.findRegion("back")
-        greenLine = atlas.createPatch("green_line")
-        greenLineVer = atlas.createPatch("green_line_ver")
+        greenLine = TextureRegionDrawable(atlas.findRegion("green_line"))
 
         helpButton = TextureRegionDrawable(atlas.findRegion("help_button"))
         leaderBoardButton = TextureRegionDrawable(atlas.findRegion("leader_board_button"))

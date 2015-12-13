@@ -10,7 +10,7 @@ I created an app using Libgdx, Kotlin and RoboVM for Desktop, iOS and Android.
  
 **How to run this game**
 
-1. Setup IntelliJ IDEA [download](https://www.jetbrains.com/idea/download/)
+1. Setup IntelliJ IDEA from [this link](https://www.jetbrains.com/idea/download/)
 2. Import build.gradle
 3. Run project.
  

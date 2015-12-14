@@ -52,6 +52,7 @@ class Assets : ManagedAsset {
     lateinit var playButton : TextureRegionDrawable
     lateinit var levelClearedDialogBackground : TextureRegionDrawable
     lateinit var levelInfoDialogBackground : TextureRegionDrawable
+    lateinit var leaderBoardDialogBackground : TextureRegionDrawable
     lateinit var nextButton : TextureRegionDrawable
     lateinit var menuButton : TextureRegionDrawable
     var stars : ArrayList<TextureRegionDrawable> = ArrayList()
@@ -119,6 +120,8 @@ class Assets : ManagedAsset {
 
         levelClearedDialogBackground = TextureRegionDrawable(atlas.findRegion("level_cleared_dialog"))
         levelInfoDialogBackground = TextureRegionDrawable(atlas.findRegion("level_info"))
+        leaderBoardDialogBackground = TextureRegionDrawable(atlas.findRegion("leader_board_dialog_background"))
+
         nextButton = TextureRegionDrawable(atlas.findRegion("next_button"))
         menuButton = TextureRegionDrawable(atlas.findRegion("menu_button"))
 

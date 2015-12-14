@@ -37,6 +37,7 @@ class MenuScreen : BaseScreen {
                 }
                 "leader_board_button" -> {
                     // Show leader board screen
+                    game.showLeaderBoardDialog()
                 }
                 "setting_button" -> {
                     // Show Setting button
@@ -93,10 +94,10 @@ class MenuScreen : BaseScreen {
 
         var table = Table()
         table.add(helpButton)
-        var cell = table.add(leaderBoardButton)
-        cell.padLeft(50f)
-        cell.padRight(50f)
-        table.add(settingButton)
+//        var cell = table.add(leaderBoardButton)
+//        cell.padLeft(50f)
+//        cell.padRight(50f)
+//        table.add(settingButton)
         table.width = width
         table.height = game.assets.helpButton.minHeight
         table.y = hardButton.y - 50 - table.height

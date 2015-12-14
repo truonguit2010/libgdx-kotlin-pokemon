@@ -11,6 +11,8 @@ import vn.pokemon.screens.BaseScreen
 import vn.pokemon.screens.GameScreen
 import vn.pokemon.screens.HelpScreen
 import vn.pokemon.screens.MenuScreen
+import vn.pokemon.styles.LeaderBoardDialogStyle
+import vn.pokemon.ui.LeaderBoardDialog
 import vn.pokemon.utils.UIUtils
 
 //public class KotlinSample : ApplicationAdapter() {
@@ -38,6 +40,7 @@ public class PokemonGame : Game() {
 	lateinit var gameScreen : GameScreen
 	lateinit var helpScreen : HelpScreen
 	lateinit var assets : Assets
+	lateinit var leaderBoardDialog : LeaderBoardDialog
 
 	lateinit var uiUtils : UIUtils
 
@@ -61,9 +64,14 @@ public class PokemonGame : Game() {
 		gameScreen = GameScreen(this)
 		menuScreen = MenuScreen(this)
 		helpScreen = HelpScreen(this)
-
 		setScreen(menuScreen)
 
+		// Init dialogs
+		leaderBoardDialog = LeaderBoardDialog("", this)
+	}
+
+	fun showLeaderBoardDialog() {
+		leaderBoardDialog.show(getScreen() as BaseScreen)
 	}
 
 	/**
@@ -75,7 +83,7 @@ public class PokemonGame : Game() {
 	fun showGameScreen(type : String) {
 		var game = GameScreen(this)
 		if ("normal" == type) {
-
+			game.changeGameType(game.GAME_TYPE_NORMAL)
 		} else {
 			game.changeGameType(game.GAME_TYPE_HIDDEN)
 		}

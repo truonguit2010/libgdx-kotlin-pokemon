@@ -91,7 +91,7 @@
 				{
 					"isa" = "PBXGroup";
 					"children" =
-						("C37609076B5E4869B13E0BA3", "DCB779F246154B419EFE1699", "3558D28F91FF49178DE3214A",
+						("79C1442E8DC24B63BAB5B62A", "5D3215CCB1DC47B0BB08DA64", "3558D28F91FF49178DE3214A",
  "5EDEAF4DAD6C415ABBE52F07", "C45177B4CED84CA0A01953B8", "2924C3EBB4A64856A444388E",
  "2A3AA860182049BDA625733A", "A1D918DE29524124B290558D", "5E2C776B7F7E434E97671B85",
  "A749777B60F149048F4DCC86", "7F760B42742A40EFA9900B99", "9E6A8C44297B4C3B91E28E8A",
@@ -205,7 +205,7 @@
 					"sourceTree" = "<group>";
 					"path" = "Icon@2x.png";
 				};
-			"A0A876C8EAA64EFE91F16676" =
+			"DE94E763519142019B1558C4" =
 				{
 					"isa" = "PBXFileReference";
 					"name" = "background.png";
@@ -213,28 +213,28 @@
 					"sourceTree" = "<group>";
 					"path" = "background.png";
 				};
-			"C37609076B5E4869B13E0BA3" =
+			"79C1442E8DC24B63BAB5B62A" =
 				{
 					"isa" = "PBXGroup";
 					"children" =
-						("81A08344A9C14D59B81909B8");
+						("373EC3BE46C9408180E5A061");
 					"name" = "atlas";
 					"sourceTree" = "<group>";
 					"path" = "atlas";
 				};
-			"81A08344A9C14D59B81909B8" =
+			"373EC3BE46C9408180E5A061" =
 				{
 					"isa" = "PBXGroup";
 					"children" =
-						("A0A876C8EAA64EFE91F16676", "6BDDA8757424489EAA28E9D5", "01468C9CB0D24074B3407220",
- "EF3EDF924C44419A96FE732F", "D6DEB9D40F504B079C23E4DD", "2A3A5ED3F6F74A699831C95A",
- "3D2F5B6519C64389B11AE553", "81C16DDEC17E483784153093", "9EB3C341AB954FD9B99E6C7F",
- "5286BA0DC0E348A09AE548E5");
+						("DE94E763519142019B1558C4", "5CD5D6F88CAC4EB58A815E14", "F80679F0F95F4EA4927967D4",
+ "C9C64A24A6E548E0A3CAD6A8", "2B72A6DF0FD0458581F728E8", "85ADBC08EAC94533B8BE0664",
+ "75C6F68B694D446691486A1C", "6E38C9A5440649AFA2C49852", "8696BF55FC2D46358C76C335",
+ "1BA287770C0040FF847E1AE3");
 					"name" = "640960";
 					"sourceTree" = "<group>";
 					"path" = "640960";
 				};
-			"6BDDA8757424489EAA28E9D5" =
+			"5CD5D6F88CAC4EB58A815E14" =
 				{
 					"isa" = "PBXFileReference";
 					"name" = "background2.png";
@@ -242,7 +242,7 @@
 					"sourceTree" = "<group>";
 					"path" = "background2.png";
 				};
-			"01468C9CB0D24074B3407220" =
+			"F80679F0F95F4EA4927967D4" =
 				{
 					"isa" = "PBXFileReference";
 					"name" = "background3.png";
@@ -250,7 +250,7 @@
 					"sourceTree" = "<group>";
 					"path" = "background3.png";
 				};
-			"EF3EDF924C44419A96FE732F" =
+			"C9C64A24A6E548E0A3CAD6A8" =
 				{
 					"isa" = "PBXFileReference";
 					"name" = "helps.png";
@@ -258,7 +258,7 @@
 					"sourceTree" = "<group>";
 					"path" = "helps.png";
 				};
-			"D6DEB9D40F504B079C23E4DD" =
+			"2B72A6DF0FD0458581F728E8" =
 				{
 					"isa" = "PBXFileReference";
 					"name" = "helps2.png";
@@ -266,7 +266,7 @@
 					"sourceTree" = "<group>";
 					"path" = "helps2.png";
 				};
-			"2A3A5ED3F6F74A699831C95A" =
+			"85ADBC08EAC94533B8BE0664" =
 				{
 					"isa" = "PBXFileReference";
 					"name" = "helps3.png";
@@ -274,7 +274,7 @@
 					"sourceTree" = "<group>";
 					"path" = "helps3.png";
 				};
-			"3D2F5B6519C64389B11AE553" =
+			"75C6F68B694D446691486A1C" =
 				{
 					"isa" = "PBXFileReference";
 					"name" = "helps4.png";
@@ -282,7 +282,7 @@
 					"sourceTree" = "<group>";
 					"path" = "helps4.png";
 				};
-			"81C16DDEC17E483784153093" =
+			"6E38C9A5440649AFA2C49852" =
 				{
 					"isa" = "PBXFileReference";
 					"name" = "pokemons.png";
@@ -290,7 +290,7 @@
 					"sourceTree" = "<group>";
 					"path" = "pokemons.png";
 				};
-			"9EB3C341AB954FD9B99E6C7F" =
+			"8696BF55FC2D46358C76C335" =
 				{
 					"isa" = "PBXFileReference";
 					"name" = "uis.png";
@@ -298,7 +298,7 @@
 					"sourceTree" = "<group>";
 					"path" = "uis.png";
 				};
-			"5286BA0DC0E348A09AE548E5" =
+			"1BA287770C0040FF847E1AE3" =
 				{
 					"isa" = "PBXFileReference";
 					"name" = "uis2.png";
@@ -306,7 +306,7 @@
 					"sourceTree" = "<group>";
 					"path" = "uis2.png";
 				};
-			"52B606810C0646F0AB69FC03" =
+			"57C7026411E44CEEBFD5544F" =
 				{
 					"isa" = "PBXFileReference";
 					"name" = "default.png";
@@ -314,16 +314,16 @@
 					"sourceTree" = "<group>";
 					"path" = "default.png";
 				};
-			"DCB779F246154B419EFE1699" =
+			"5D3215CCB1DC47B0BB08DA64" =
 				{
 					"isa" = "PBXGroup";
 					"children" =
-						("52B606810C0646F0AB69FC03", "35F64ECC25254FE3B27FBF1A");
+						("57C7026411E44CEEBFD5544F", "9800271B325C408FBF1B25CA");
 					"name" = "fonts";
 					"sourceTree" = "<group>";
 					"path" = "fonts";
 				};
-			"35F64ECC25254FE3B27FBF1A" =
+			"9800271B325C408FBF1B25CA" =
 				{
 					"isa" = "PBXFileReference";
 					"name" = "font.png";
